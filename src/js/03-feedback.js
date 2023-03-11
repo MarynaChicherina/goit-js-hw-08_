@@ -9,6 +9,8 @@ const STORAGE_KEY = 'feedback-form-state';
 feedbackForm.addEventListener('submit', onFormSubmit);
 feedbackForm.addEventListener('input', throttle(onFormInput, 500));
 
+onFormInit();
+
 function onFormSubmit (event) {
     event.preventDefault();
     event.currentTarget.reset();
@@ -22,13 +24,19 @@ function onFormInput (event) {
    localStorage.setItem(STORAGE_KEY, JSON.stringify(selectedFilters));
 }
 
-function onFormFillIn (event){
-    const savedData = JSON.parse(localStorage.getItem(STORAGE_KEY));
-    if (savedData){
-        input.value = savedData.email;
-        textarea.value = savedData.message;
+
+function onFormInit (event){
+    let persistedData = localStorage.getItem(STORAGE_KEY);
+    if (persistedData){
+        persistedData = JSON.parse(persistedData);
+        
+        input.value = persistedData.email;
+        textarea.value = persistedData.message;
     }
 }
+
+
+
 
 
 

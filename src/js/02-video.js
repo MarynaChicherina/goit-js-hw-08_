@@ -12,15 +12,16 @@ const onPlay = function(data) {
 
 player.on('timeupdate', throttle(onPlay, 1000));
 
-function determineCurrentTime (){
+determineCurrentTime();
+
+function determineCurrentTime(){
     const parsedData = JSON.parse(localStorage.getItem('videoplayer-current-time'));
 
     if (parsedData){
         player.setCurrentTime(parsedData['seconds']);
     }
 }
-determineCurrentTime();
 
-localStorage.removeItem('videoplayer-current-time');
+
 
 
