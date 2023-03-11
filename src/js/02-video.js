@@ -21,6 +21,6 @@ function determineCurrentTime (){
 }
 determineCurrentTime();
 
-
+localStorage.clear();
 
 
